@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils"
 
 interface PageHeaderProps {
-  title: string
+  title?: string
   description?: string
   className?: string
 }
