@@ -6,12 +6,13 @@ import { EventCountdown } from "@/components/event-countdown";
 import { EventAttendees } from "@/components/event-attendees";
 import { getSingleEvent } from "@/services/EventServices";
 import { EventDetailsHero } from "@/components/event-details-hero";
+import { getActiveUser } from "@/hooks/getActiveUser";
 
 export default async function EventDetailsPage({ params }: { params: any }) {
   const eventId = (await params).id;
-
-  const eventDetails = await getSingleEvent(eventId as string);
-
+  const res = await getSingleEvent(eventId as string);
+  const eventDetails = res?.data?.event;
+  const activeUser = await getActiveUser();
   return (
     <div className="relative min-h-screen">
       <div className="absolute inset-0 h-[70vh] overflow-hidden pointer-events-none"></div>
@@ -23,28 +24,48 @@ export default async function EventDetailsPage({ params }: { params: any }) {
       <div className="relative z-20 bg-background">
         <div className="container max-w-7xl py-10">
           <div className="mb-8">
-            <EventCountdown  eventStartTime={eventDetails?.eventStartTime} title="Registration days left" />
+            <EventCountdown
+              eventStartTime={eventDetails?.registrationEnd}
+              title="Registration days left"
+            />
           </div>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <div className="lg:col-span-2">
-              <EventDetailsContent  eventDetails={eventDetails} />
+                <EventDetailsContent
+                  eventDetails={eventDetails}
+                />
             </div>
 
             <div className="lg:col-span-1">
               <div className="space-y-8">
-                <EventActions eventDetails={eventDetails} />
-                <EventAttendees />
+               
+                  <EventActions
+                    activeUser={activeUser}
+                    eventDetails={eventDetails}
+                  />
+              
+                <EventAttendees eventDetails={eventDetails} />
               </div>
             </div>
           </div>
 
           <div className="mt-16">
-            <EventReviews />
+            {activeUser && (
+              <EventReviews
+                activeUser={activeUser}
+                eventReviews={eventDetails}
+              />
+            )}
           </div>
-
           <div className="mt-16">
-            <RelatedEvents />
+            {res?.data?.relatedEvents?.length > 0 ? (
+              <RelatedEvents relatedData={res.data.relatedEvents} />
+            ) : (
+              <p className="text-center text-gray-500">
+                No related data available here.
+              </p>
+            )}
           </div>
         </div>
       </div>

@@ -38,7 +38,7 @@ export default function CreateEventPage() {
   const { uploadImagesToCloudinary, isUploading } = useImageUploader();
   const form = useForm();
   const { watch, formState: { isSubmitting }, trigger, setValue } = form;
-  const [eventImageUrl, setEventImageUrl] = useState<File | File[]>([]);
+  const [eventImageUrl, setEventImageUrl] = useState<any>();
   const [activeTab, setActiveTab] = useState("details");
 
   const eventType = watch("eventType");
@@ -90,12 +90,10 @@ export default function CreateEventPage() {
           "eventType": data.eventType,
       };
 
-      console.log("result", formData)
       const result = await createEvent(formData);
       result?.success ? toast.success(result.message) : toast.error(result?.message);
     } catch (error: any) {
       toast.error(error.message);
-      console.log(error.message)
     }
   };
 
@@ -163,7 +161,6 @@ export default function CreateEventPage() {
                       <EFormImageUpload
                         control={form.control}
                         name="eventBanner"
-                        multiple={false}
                         onImageUpload={setEventImageUrl}
                         required
                       />

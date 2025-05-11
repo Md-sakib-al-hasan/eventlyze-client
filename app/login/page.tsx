@@ -20,12 +20,16 @@ import EFormInput from "@/components/modules/Shared/Form/EFormInput";
 import { loginSchema } from "@/components/modules/Auth/login/loginValidation";
 import { signInUser } from "@/services/AuthServices";
 import { toast } from "sonner";
-import {useRouter} from "next/navigation"
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
-  const router = useRouter()
+  const router = useRouter();
   const form = useForm({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
   const {
     formState: { isSubmitting },
@@ -34,15 +38,14 @@ export default function LoginPage() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const res = await signInUser(data);
-      console.log(res)
       if (res.success) {
         toast.success("Login successful!");
-        router.push("/")
-      } else {
-        toast.error(res.message || "Login failed. Please try again.");
+        router.push("/");
+      }else{
+        toast.error("Invalid Credentials!");
       }
     } catch (error: any) {
-      toast.error(error.message || "Login failed. Please try again.");
+      toast.error("Something went wrong!");
     }
   };
 
@@ -85,15 +88,7 @@ export default function LoginPage() {
                     />
                   </div>
                   <div className="space-y-2">
-                    <div className="flex items-center justify-between">
-                  
-                      <Link
-                        href="/forgot-password"
-                        className="text-xs text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
-                      >
-                        Forgot password?
-                      </Link>
-                    </div>
+          
 
                     {/* Form input */}
                     <EFormInput
@@ -151,7 +146,7 @@ export default function LoginPage() {
         >
           <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-secondary/20 to-background"></div>
           <Image
-            src="/placeholder.svg?height=800&width=600&text=Event+Login"
+            src="https://images.unsplash.com/photo-1571645163064-77faa9676a46?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Login"
             width={600}
             height={800}
@@ -168,7 +163,7 @@ export default function LoginPage() {
             </h2>
             <p className="mb-4 max-w-md text-sm text-white/80">
               Join thousands of event enthusiasts and create unforgettable
-              memories with Eventify.
+              memories with Eventilyze.
             </p>
             <Button variant="secondary" className="gap-2">
               <span>Explore Events</span>

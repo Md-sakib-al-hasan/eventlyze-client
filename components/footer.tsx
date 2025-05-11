@@ -1,5 +1,6 @@
-import Link from "next/link"
-import { Calendar } from "lucide-react"
+import Link from "next/link";
+import { Calendar } from "lucide-react";
+import { FileText, ShieldCheck, Cookie } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,15 +12,15 @@ export function Footer() {
               <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-white">
                 <Calendar className="h-4 w-4" />
               </div>
-              <span className="font-display text-xl font-bold">Eventify</span>
+              <span className="font-display text-xl font-bold">Eventilyze</span>
             </Link>
             <p className="mb-4 max-w-xs text-muted-foreground">
-              Discover, create, and join amazing events. Connect with like-minded people and create unforgettable
-              memories.
+              Discover, create, and join amazing events. Connect with
+              like-minded people and create unforgettable memories.
             </p>
             <div className="flex gap-4">
               <Link
-                href="#"
+                href="https://www.facebook.com"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               >
                 <span className="sr-only">Facebook</span>
@@ -39,7 +40,7 @@ export function Footer() {
                 </svg>
               </Link>
               <Link
-                href="#"
+                href="https://www.x.com"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               >
                 <span className="sr-only">Twitter</span>
@@ -81,7 +82,7 @@ export function Footer() {
                 </svg>
               </Link>
               <Link
-                href="#"
+                href="https://www.linkedin.com"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-muted text-muted-foreground transition-colors hover:bg-primary hover:text-primary-foreground"
               >
                 <span className="sr-only">LinkedIn</span>
@@ -110,39 +111,55 @@ export function Footer() {
             <h3 className="mb-4 text-sm font-medium">Company</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link
+                  href="/about-us"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
                   About Us
                 </Link>
               </li>
-              
+
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link
+                  href="/contact-us"
+                  className="text-muted-foreground transition-colors hover:text-foreground"
+                >
                   Contact Us
                 </Link>
               </li>
             </ul>
           </div>
 
-
           <div>
             <h3 className="mb-4 text-sm font-medium">Legal</h3>
             <ul className="space-y-2 text-sm">
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link
+                  href="/terms-of-service"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <FileText className="h-4 w-4" />
                   Terms of Service
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link
+                  href="/privacy-policy"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <ShieldCheck className="h-4 w-4" />
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-muted-foreground transition-colors hover:text-foreground">
+                <Link
+                  href="/cookie-policy"
+                  className="flex items-center gap-2 text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Cookie className="h-4 w-4" />
                   Cookie Policy
                 </Link>
               </li>
-             
             </ul>
           </div>
         </div>
@@ -151,19 +168,24 @@ export function Footer() {
       <div className="border-t py-6">
         <div className="container flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-center text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} Eventify. All rights reserved.
+            &copy; {new Date().getFullYear()} Eventilyze. All rights reserved.
           </p>
           <div className="flex gap-4">
-            <Link href="#" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <Link
+              href="/terms-of-service"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
               Terms
             </Link>
-            <Link href="#" className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <Link
+              href="/privacy-policy"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
               Privacy
             </Link>
-           
           </div>
         </div>
       </div>
     </footer>
-  )
+  );
 }

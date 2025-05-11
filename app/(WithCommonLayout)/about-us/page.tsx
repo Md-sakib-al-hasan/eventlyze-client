@@ -13,7 +13,7 @@ export default function AboutPage() {
       <div className="flex-1 p-6 md:p-8 overflow-hidden container">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            About Eventify
+            About Eventilyze
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             Connecting people through extraordinary events and creating unforgettable experiences.
@@ -24,13 +24,13 @@ export default function AboutPage() {
           <div>
             <h2 className="text-3xl font-bold mb-6">Our Mission</h2>
             <p className="text-lg text-muted-foreground mb-6">
-              At Eventify, we believe that events have the power to transform lives, build communities, and create
+              At Eventilyze, we believe that events have the power to transform lives, build communities, and create
               lasting memories. Our mission is to make event discovery, creation, and management seamless and accessible
               to everyone.
             </p>
             <p className="text-lg text-muted-foreground mb-6">
               Whether you're looking to attend a local workshop, organize a major conference, or simply connect with
-              like-minded individuals, Eventify provides the tools and platform to make it happen.
+              like-minded individuals, Eventilyze provides the tools and platform to make it happen.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 mt-8">
               <Button
@@ -38,20 +38,20 @@ export default function AboutPage() {
                 asChild
                 className="rounded-md bg-gradient-to-r from-primary to-secondary hover:opacity-90 transition-opacity"
               >
-                <Link href="/create-event">Create Your Event</Link>
+                <Link href="/dashboard/create-event">Create Your Event</Link>
               </Button>
               <Button size="lg" variant="outline" asChild className="rounded-md">
-                <Link href="/dashboard">Explore Events</Link>
+                <Link href="/events">Explore Events</Link>
               </Button>
             </div>
           </div>
           <div className="relative h-[400px] rounded-xl overflow-hidden shadow-xl">
-            <Image src="/placeholder.svg" alt="People at an event" fill className="object-cover" />
+            <Image src="https://images.unsplash.com/photo-1561489396-888724a1543d?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fGV2ZW50fGVufDB8fDB8fHww" alt="People at an event" fill className="object-cover" />
           </div>
         </div>
 
         <div className="mb-20">
-          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Eventify</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Why Choose Eventilyze</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <Card className="shadow-md hover:shadow-lg transition-all duration-300 group">
               <CardHeader className="pb-2">
@@ -97,14 +97,14 @@ export default function AboutPage() {
           <h2 className="text-3xl font-bold text-center mb-12">Our Team</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { name: "Sarah Johnson", role: "CEO & Founder" },
-              { name: "Michael Chen", role: "CTO" },
-              { name: "Priya Patel", role: "Head of Design" },
-              { name: "David Wilson", role: "Head of Marketing" },
-            ].map((member) => (
+              { name: "Sarah Johnson", role: "CEO & Founder", image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80' },
+              { name: "Michael Chen", role: "CTO", image: "https://images.unsplash.com/photo-1531590878845-12627191e687?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80" },
+              { name: "Priya Patel", role: "Head of Design", image: "https://images.unsplash.com/photo-1488508872907-592763824245?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80" },
+              { name: "David Wilson", role: "Head of Marketing", image: "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg" },
+            ].map((member: any) => (
               <div key={member.name} className="text-center group">
                 <div className="w-40 h-40 mx-auto rounded-full overflow-hidden mb-4 bg-muted border-2 border-primary/20 group-hover:border-primary transition-colors duration-300">
-                  <Image src="/placeholder.svg" alt={member.name} width={160} height={160} className="object-cover" />
+                  <Image src={member?.image} alt={member.name} width={160} height={160} className="object-cover" />
                 </div>
                 <h3 className="font-bold text-lg">{member.name}</h3>
                 <p className="text-muted-foreground">{member.role}</p>
@@ -129,8 +129,8 @@ export default function AboutPage() {
               </CardHeader>
               <CardContent className="text-center">
                 <p className="text-muted-foreground">
-                  <a href="mailto:contact@eventify.com" className="hover:underline">
-                    contact@eventify.com
+                  <a href="mailto:contact@eventilyze.com" className="hover:underline">
+                    contact@eventilyze.com
                   </a>
                 </p>
               </CardContent>

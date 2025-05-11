@@ -46,13 +46,13 @@ export default function ContactUsPage() {
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     try {
       const result = await sendContactMessage(data);
+
       if (result?.success) {
         toast.success(result.message);
         form.reset();
       }
     } catch (error: any) {
       toast.error(error.message || "Error sending message. Please try again.");
-      console.log(error);
     }
   };
 
@@ -86,8 +86,8 @@ export default function ContactUsPage() {
               Have questions about creating or joining events? Reach out to our
               team, and we’ll get back to you as soon as possible.
             </p>
-            <Button variant="secondary" className="gap-2">
-              <span>Learn More</span>
+            <Button  variant="secondary" className="gap-2">
+              <Link href="/about-us"><span>Learn More</span></Link>
               <ArrowRight className="h-4 w-4" />
             </Button>
           </div>

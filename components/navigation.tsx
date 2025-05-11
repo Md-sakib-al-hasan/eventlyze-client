@@ -13,7 +13,9 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
-import { NotificationsPopover } from "@/components/notifications-popover";
+import { NotificationsPopover } from "./notifications-popover";
+import { handleClientLogout } from "@/hooks/handleClientLogout";
+import { toast } from "sonner";
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -28,7 +30,9 @@ export function Navigation() {
   const signOut = () => {
     Cookies.remove("accessToken");
     setIsLoggedIn(false);
-  }; // Replace with real auth check
+    handleClientLogout()
+    toast.success("Logout Successful!")
+  };
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
@@ -52,8 +56,9 @@ export function Navigation() {
   const navItems = [
     { name: "Home", href: "/" },
     { name: "Events", href: "/events" },
-    { name: "Create Event", href: "/create-event" },
-    { name: "About", href: "/about" },
+    { name: "Create Event", href: "/dashboard/create-event" },
+    { name: "About", href: "/about-us" },
+    { name: "Contact Us", href: "/contact-us" },
   ];
 
   return (
@@ -74,7 +79,7 @@ export function Navigation() {
             <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-white">
               <Calendar className="h-4 w-4" />
             </div>
-            <span className="font-display text-xl font-bold">Eventify</span>
+            <span className="font-display text-xl font-bold">Eventilyze</span>
           </Link>
 
           <nav className="hidden md:flex items-center gap-6">
@@ -115,9 +120,7 @@ export function Navigation() {
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard">Dashboard</Link>
                   </DropdownMenuItem>
-                  <DropdownMenuItem asChild>
-                    <Link href="/dashboard/profile">Profile</Link>
-                  </DropdownMenuItem>
+          
                   <DropdownMenuItem asChild>
                     <Link href="/dashboard/settings">Settings</Link>
                   </DropdownMenuItem>
@@ -162,7 +165,7 @@ export function Navigation() {
               <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-r from-primary to-secondary text-white">
                 <Calendar className="h-4 w-4" />
               </div>
-              <span className="font-display text-xl font-bold">Eventify</span>
+              <span className="font-display text-xl font-bold">Eventilyze</span>
             </Link>
 
             <Button
@@ -199,13 +202,7 @@ export function Navigation() {
                 >
                   Dashboard
                 </Link>
-                <Link
-                  href="/dashboard/profile"
-                  className="flex h-12 items-center text-lg font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Profile
-                </Link>
+              
                 <Link
                   href="/dashboard/settings"
                   className="flex h-12 items-center text-lg font-medium"
