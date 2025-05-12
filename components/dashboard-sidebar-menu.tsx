@@ -15,6 +15,7 @@ import {
   UserCog,
   DollarSign,
   HomeIcon,
+  PersonStanding,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -34,17 +35,28 @@ export function DashboardSidebarMenu({ data }: any) {
       href: "/dashboard",
       color: "text-sky-500",
     },
+    ...(data?.role === "USER"
+      ? [
+        {
+          label: "Create Event",
+          icon: CalendarPlus,
+          href: "/dashboard/create-event",
+          color: "text-violet-500",
+        },
+      ]
+      : []),
+   
     {
-      label: "Create Event",
-      icon: CalendarPlus,
-      href: "/dashboard/create-event",
-      color: "text-violet-500",
-    },
-    {
-      label: "My Events",
+      label: `${data?.role === "USER" ? "My" : "All"} Events`,
       icon: Calendar,
       href: "/dashboard/events",
       color: "text-violet-500",
+    },
+    {
+      label: "Participants",
+      icon: PersonStanding,
+      href: "/dashboard/participants",
+      color: "text-teal-500",
     },
     {
       label: "Invitations",
@@ -71,7 +83,7 @@ export function DashboardSidebarMenu({ data }: any) {
       href: "/dashboard/reviews",
       color: "text-yellow-500",
     },
-    ...(data.role === "ADMIN"
+    ...(data?.role === "ADMIN"
       ? [
         {
           label: "User Management",

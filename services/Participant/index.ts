@@ -24,3 +24,36 @@ export const createPayment = async (eventId: any) => {
     return new Error(message);
   }
 };
+
+// Get all Participant
+export const getAllParticipants = async () => {
+  try {
+    const res = await app_axios.get(`participation/all-participants`);
+
+    return res.data;
+  } catch (error: any) {
+    const message =
+      error?.response?.data?.message ||
+      "Something went wrong while getting a notification!";
+    return new Error(message);
+  }
+};
+
+// Participator status update
+export const updatedParticipatStatus = async (id: string, data: any) => {
+  try {
+    const response = await app_axios.patch(
+      `/participation/update-status/${id}`,
+      {
+       status: data,
+      }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    const message =
+      error?.response?.data?.message ||
+      "Something went wrong while updating user role!";
+    return new Error(message);
+  }
+};
